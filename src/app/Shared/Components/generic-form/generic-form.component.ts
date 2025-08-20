@@ -3,7 +3,7 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { FormFieldBase } from '../../Models/forms/form-field-base';
 import { FormControlService } from '../../Services/form-control/form-control.service';
 import { CommonModule } from '@angular/common';
-import { FormFieldComponent } from '../form-field/form-field/form-field.component';
+import { FormFieldComponent } from '../form-field/form-field.component';
 
 @Component({
   selector: 'app-generic-form',

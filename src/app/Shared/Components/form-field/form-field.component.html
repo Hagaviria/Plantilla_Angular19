@@ -1,0 +1,25 @@
+<div [formGroup]="form()" class="form-field">
+  <label [attr.for]="field().key" class="form-label">
+    {{ field().label }}
+  </label>
+
+  <div>
+    @switch (field().controlType) { @case ('textbox') {
+    <input
+      pInputText
+      [formControlName]="field().key"
+      [id]="field().key"
+      [type]="field().type || 'text'"
+    />
+    } @case ('checkbox') {
+    <p-checkbox
+      [binary]="true"
+      [formControlName]="field().key"
+      [inputId]="field().key"
+    ></p-checkbox>
+    <label [attr.for]="field().key" class="ml-2">{{ field().label }}</label>
+    } } @if (!isValid) {
+    <div class="required-label">{{ field().label }} es requerido</div>
+    }
+  </div>
+</div>

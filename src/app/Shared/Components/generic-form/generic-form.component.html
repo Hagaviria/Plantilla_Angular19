@@ -2,5 +2,4 @@
   @for (field of formFields; track field.key) {
   <app-form-field [field]="field" [form]="formGroup"></app-form-field>
   }
-  <button type="submit" [disabled]="formGroup.invalid">Enviar</button>
 </form>

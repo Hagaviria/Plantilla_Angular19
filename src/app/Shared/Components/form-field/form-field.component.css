@@ -1,0 +1,22 @@
+input[pInputText] {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.form-field {
+  margin-bottom: 1rem;
+}
+label {
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+.required-label {
+  color: #f44336;
+}
+
+.form-label {
+  color: #333;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
