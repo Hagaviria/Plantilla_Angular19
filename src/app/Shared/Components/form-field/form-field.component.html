@@ -4,7 +4,8 @@
   </label>
 
   <div>
-    @switch (field().controlType) { @case ('textbox') {
+    @let control = form().get(field().key)!; @switch (field().controlType) {
+    @case ('textbox') {
     <input
       pInputText
       [formControlName]="field().key"
@@ -18,8 +19,8 @@
       [inputId]="field().key"
     ></p-checkbox>
     <label [attr.for]="field().key" class="ml-2">{{ field().label }}</label>
-    } } @if (!isValid) {
-    <div class="required-label">{{ field().label }} es requerido</div>
+    } } @if (control.invalid && (control.dirty || control.touched)) {
+    <div class="required-label">{{ field().label }} es obligatorio</div>
     }
   </div>
 </div>

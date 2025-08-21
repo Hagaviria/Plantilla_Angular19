@@ -1,0 +1,26 @@
+<p-card
+  [header]="project.title"
+  [subheader]="'ID: ' + project.id"
+  class="cursor-pointer"
+>
+  <p>{{ project.description }}</p>
+  <ng-template pTemplate="footer">
+    <p-button
+      label="Ver tareas"
+      icon="pi pi-list"
+      (click)="goToTasks(project.id)"
+    ></p-button>
+    <p-button
+      label="Editar"
+      class="ml-2"
+      icon="pi pi-pencil"
+      (click)="editProject(project.id)"
+    ></p-button>
+    <p-button
+      label="Eliminar"
+      class="ml-2"
+      icon="pi pi-trash"
+      (click)="deleteProject(project.id)"
+    ></p-button>
+  </ng-template>
+</p-card>

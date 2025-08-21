@@ -1,0 +1,6 @@
+<h2>{{ isEdit ? "Editar Proyecto" : "Nuevo Proyecto" }}</h2>
+
+<app-generic-form [formFields]="formFields" (formSubmit)="onSubmit($event)">
+</app-generic-form>
+
+<p-button label="Cancelar" (click)="onCancel()"></p-button>
