@@ -1,4 +1,5 @@
 <h2>Lista de Proyectos</h2>
+<p-button label="Nuevo Proyecto" (click)="createNewProject()"></p-button>
 <div class="grid">
   @for (project of projects(); track project.id) {
   <div class="col-12 md:col-4">

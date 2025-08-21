@@ -16,7 +16,7 @@ export class ProjectFormComponent {
   projectId?: number;
   formFields: FormFieldBase<any>[] = [
     new FormFieldBase({
-      controlType: 'input',
+      controlType: 'textbox',
       key: 'title',
       label: 'Title',
       value: '',

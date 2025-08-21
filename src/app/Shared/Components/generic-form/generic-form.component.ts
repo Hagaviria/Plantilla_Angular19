@@ -24,6 +24,8 @@ export class GenericFormComponent<
 {
   @Input() formFields: FormFieldBase<string>[] = [];
   @Output() formSubmit = new EventEmitter<T>();
+  @Input() labelSubmit: string = 'Guardar';
+  @Input() styleClass: string = '';
 
   formGroup!: FormGroup;
 

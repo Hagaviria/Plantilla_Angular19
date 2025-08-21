@@ -6,6 +6,7 @@ export class FormFieldBase<T> {
   order: number;
   controlType: string;
   type?: string;
+  rows?: number;
   options?: { key: string; value: string }[];
 
   constructor(options: Partial<FormFieldBase<T>> = {}) {
@@ -17,5 +18,6 @@ export class FormFieldBase<T> {
     this.controlType = options.controlType ?? '';
     this.type = options.type;
     this.options = options.options ?? [];
+    this.rows = options.rows ?? 3;
   }
 }

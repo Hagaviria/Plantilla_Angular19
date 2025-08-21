@@ -12,6 +12,14 @@
       [id]="field().key"
       [type]="field().type || 'text'"
     />
+    } @case ('textarea') {
+    <textarea
+      pTextarea
+      [formControlName]="field().key"
+      [autoResize]="true"
+      [id]="field().key"
+      [rows]="field().rows || 3"
+    ></textarea>
     } @case ('checkbox') {
     <p-checkbox
       [binary]="true"
