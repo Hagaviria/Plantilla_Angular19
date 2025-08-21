@@ -1,24 +1,28 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import Aura from '@primeng/themes/aura';
 import { providePrimeNG } from 'primeng/config';
 import { routes } from './app.routes';
 import {
   provideClientHydration,
   withEventReplay,
 } from '@angular/platform-browser';
-import Aura from '@primeng/themes/aura';
+import { provideHttpClient } from '@angular/common/http';
+import { AuthService } from './Security/Services/auth.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideAnimationsAsync(),
+    provideHttpClient(),
     providePrimeNG({
-      theme: {
-        preset: Aura,
-      },
+      theme: { preset: Aura, options: { darkModeSelector: '.app-dark' } },
     }),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
+    {
+      provide: 'APP_INIT_AUTH',
+      useFactory: (authService: AuthService) => () => authService.initialize(),
+      deps: [AuthService],
+    },
   ],
 };

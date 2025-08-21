@@ -5,6 +5,9 @@ import { CardModule } from 'primeng/card';
 import { GenericFormComponent } from '../../../../Shared/Components/generic-form/generic-form.component';
 import { FormFieldBase } from '../../../../Shared/Models/forms/form-field-base';
 import { ButtonModule } from 'primeng/button';
+import { LoginForm } from '../../Models/loginForm';
+import { AuthService } from '../../../../Security/Services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +23,7 @@ import { ButtonModule } from 'primeng/button';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  formFields: FormFieldBase<any>[] = [
+  formFields: FormFieldBase<string>[] = [
     new FormFieldBase({
       key: 'user',
       label: 'Usuario',
@@ -36,7 +39,28 @@ export class LoginComponent {
       type: 'password',
     }),
   ];
-  onFormSubmit(formData: any) {
-    console.log('Form submitted:', formData);
+  constructor(
+    private readonly authService: AuthService,
+    private readonly router: Router
+  ) {}
+
+  onFormSubmit(formData: Record<string, any>) {
+    const loginForm: LoginForm = {
+      user: (formData['user'] ?? '') as string,
+      password: (formData['password'] ?? '') as string,
+    };
+    this.authService.login(loginForm.user, loginForm.password).subscribe({
+      next: (success) => {
+        console.log('Login successful:', success);
+        if (success) {
+          this.router.navigate(['/projects']);
+        } else {
+          console.warn('Credenciales inválidas');
+        }
+      },
+      error: (error) => {
+        console.error('Login failed:', error);
+      },
+    });
   }
 }

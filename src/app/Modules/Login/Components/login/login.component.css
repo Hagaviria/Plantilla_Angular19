@@ -3,33 +3,27 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, #9ebecc, #30809d);
+  background: linear-gradient(to bottom right, #9ebecc, #30809d);
 }
-
-.login-card {
-  width: 400px;
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
 }
-::ng-deep .p-card {
-  background: rgba(255, 255, 255, 0.6);
-  padding: 2rem;
-  border-radius: 1.5rem;
-  width: 380px;
-  backdrop-filter: blur(10px);
+.login-card .logo img {
+  width: 4rem;
+  height: auto;
 }
-
 .title {
   text-align: center;
-  color: black;
+  color: rgb(83, 146, 161);
 }
-.actions {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.actions ::ng-deep .p-button {
-  font-weight: bold;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #30809d;
+
+::ng-deep .p-card {
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(16px);
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  width: 150%;
 }
