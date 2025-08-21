@@ -36,6 +36,27 @@ export const routes: Routes = [
             './Modules/Tasks/Components/task-list/task-list.component'
           ).then((m) => m.TaskListComponent),
       },
+      {
+        path: ':id/tasks/create',
+        loadComponent: () =>
+          import(
+            './Modules/Tasks/Components/task-form/task-form.component'
+          ).then((m) => m.TaskFormComponent),
+      },
+      {
+        path: ':id/tasks/:taskId/edit',
+        loadComponent: () =>
+          import(
+            './Modules/Tasks/Components/task-form/task-form.component'
+          ).then((m) => m.TaskFormComponent),
+      },
+      {
+        path: ':id/tasks/:taskId/delete',
+        loadComponent: () =>
+          import(
+            './Modules/Tasks/Components/task-form/task-form.component'
+          ).then((m) => m.TaskFormComponent),
+      },
     ],
   },
   { path: '', redirectTo: '/login', pathMatch: 'full' },

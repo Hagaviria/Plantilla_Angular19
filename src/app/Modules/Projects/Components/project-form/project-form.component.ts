@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormFieldBase } from '../../../../Shared/Models/forms/form-field-base';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectsService } from '../../Services/projects.service';
@@ -7,53 +7,93 @@ import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-project-form',
+  standalone: true,
   imports: [GenericFormComponent, ButtonModule],
   templateUrl: './project-form.component.html',
   styleUrl: './project-form.component.css',
 })
-export class ProjectFormComponent {
+export class ProjectFormComponent implements OnInit {
+  private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
+  private readonly projectsService = inject(ProjectsService);
+
   isEdit = false;
   projectId?: number;
-  formFields: FormFieldBase<any>[] = [
-    new FormFieldBase({
-      controlType: 'textbox',
-      key: 'title',
-      label: 'Title',
-      value: '',
-      required: true,
-    }),
-    new FormFieldBase({
-      controlType: 'textarea',
-      key: 'description',
-      label: 'Description',
-      value: '',
-      required: true,
-    }),
-  ];
+  formFields: FormFieldBase<any>[] = [];
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private projectService: ProjectsService
-  ) {
-    this.projectId = Number(this.route.snapshot.paramMap.get('id'));
-    this.isEdit = !!this.projectId;
+  ngOnInit() {
+    this.initializeForm();
   }
+
+  private initializeForm(): void {
+    const idParam = this.route.snapshot.paramMap.get('id');
+    this.projectId = idParam ? Number(idParam) : undefined;
+    this.isEdit = !!this.projectId;
+
+    if (this.isEdit) {
+      this.loadProjectForEdit();
+    } else {
+      this.setDefaultFormFields();
+    }
+  }
+
+  private loadProjectForEdit(): void {
+    const project = this.projectsService
+      .projects()
+      .find((p) => p.id === this.projectId);
+
+    if (project) {
+      this.formFields = [
+        new FormFieldBase({
+          controlType: 'textbox',
+          key: 'title',
+          label: 'Title',
+          value: project.title,
+          required: true,
+        }),
+        new FormFieldBase({
+          controlType: 'textarea',
+          key: 'description',
+          label: 'Description',
+          value: project.description,
+          required: true,
+        }),
+      ];
+    }
+  }
+
+  private setDefaultFormFields(): void {
+    this.formFields = [
+      new FormFieldBase({
+        controlType: 'textbox',
+        key: 'title',
+        label: 'Title',
+        value: '',
+        required: true,
+      }),
+      new FormFieldBase({
+        controlType: 'textarea',
+        key: 'description',
+        label: 'Description',
+        value: '',
+        required: true,
+      }),
+    ];
+  }
+
   onCancel() {
     this.router.navigate(['/projects']);
   }
 
   onSubmit(formValues: any) {
     if (this.isEdit) {
-      this.projectService
+      this.projectsService
         .updateProject(this.projectId!, formValues)
-        .subscribe(() => {
-          this.router.navigate(['/projects']);
-        });
+        .subscribe(() => this.router.navigate(['/projects']));
     } else {
-      this.projectService.createProject(formValues).subscribe(() => {
-        this.router.navigate(['/projects']);
-      });
+      this.projectsService
+        .createProject(formValues)
+        .subscribe(() => this.router.navigate(['/projects']));
     }
   }
 }

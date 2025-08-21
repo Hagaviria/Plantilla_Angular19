@@ -1,6 +1,8 @@
 <h2>Tareas del Proyecto {{ projectId }}</h2>
 
 <p-button label="Nueva Tarea" (click)="addTask()"></p-button>
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>
 
 <div class="grid">
   @for (task of tasks$ | async; track task.id) {

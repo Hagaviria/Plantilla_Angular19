@@ -12,11 +12,16 @@
   </p-tag>
 
   <ng-template pTemplate="footer">
-    <p-button label="Editar" (click)="edit.emit()"></p-button>
+    <p-button
+      label="Editar"
+      icon="pi pi-pencil"
+      (click)="editTask()"
+    ></p-button>
     <p-button
       label="Eliminar"
+      icon="pi pi-trash"
       severity="danger"
-      (click)="delete.emit()"
+      (click)="deleteTask()"
     ></p-button>
   </ng-template>
 </p-card>

@@ -1,1 +1,6 @@
-<p>task-form works!</p>
+<h2>{{ isEdit ? "Editar Tarea" : "Nueva Tarea" }}</h2>
+
+<app-generic-form [formFields]="formFields" (formSubmit)="onSubmit($event)">
+</app-generic-form>
+
+<p-button label="Cancelar" (click)="onCancel()"></p-button>
