@@ -1,6 +1,20 @@
-<h2>{{ isEdit ? "Editar Proyecto" : "Nuevo Proyecto" }}</h2>
+<div>
+  <h2>{{ isEdit ? "Editar Proyecto" : "Nuevo Proyecto" }}</h2>
+  <div>
+    <p-button
+      label="Volver"
+      (click)="onCancel()"
+      (keydown.enter)="onCancel()"
+      icon="pi pi-arrow-left"
+    ></p-button>
+  </div>
+</div>
 
 <app-generic-form [formFields]="formFields" (formSubmit)="onSubmit($event)">
 </app-generic-form>
 
-<p-button label="Cancelar" (click)="onCancel()"></p-button>
+<p-button
+  label="Cancelar"
+  (click)="onCancel()"
+  (keydown.enter)="onCancel()"
+></p-button>

@@ -1,18 +1,32 @@
-<h2>Tareas del Proyecto {{ projectId }}</h2>
+<div class="tasks-header">
+  <h2>Tareas del Proyecto {{ projectId }}</h2>
+  <div class="flex gap-2">
+    <p-button
+      label="Volver"
+      icon="pi pi-arrow-left"
+      (click)="backToProjects()"
+      (keydown.enter)="backToProjects()"
+      severity="secondary"
+    ></p-button>
+    <p-button
+      label="Nueva Tarea"
+      icon="pi pi-plus"
+      (click)="addTask()"
+      (keydown.enter)="addTask()"
+    ></p-button>
+  </div>
+</div>
 
-<p-button label="Nueva Tarea" (click)="addTask()"></p-button>
 <p-toast></p-toast>
 <p-confirmDialog></p-confirmDialog>
 
-<div class="grid">
+<div class="tasks-grid">
   @for (task of tasks$ | async; track task.id) {
-  <div class="col-12 md:col-4">
-    <app-task-card
-      [task]="task"
-      (edit)="editTask(task.id)"
-      (delete)="deleteTask(task.id)"
-    >
-    </app-task-card>
-  </div>
+  <app-task-card
+    [task]="task"
+    (edit)="editTask(task.id)"
+    (delete)="deleteTask(task.id)"
+  >
+  </app-task-card>
   }
 </div>

@@ -10,7 +10,7 @@ import { ButtonModule } from 'primeng/button';
   standalone: true,
   imports: [GenericFormComponent, ButtonModule],
   templateUrl: './project-form.component.html',
-  styleUrl: './project-form.component.css',
+  styleUrls: ['./project-form.component.css'],
 })
 export class ProjectFormComponent implements OnInit {
   private readonly route = inject(ActivatedRoute);

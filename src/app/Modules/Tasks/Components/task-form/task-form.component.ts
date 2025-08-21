@@ -10,7 +10,7 @@ import { ButtonModule } from 'primeng/button';
   standalone: true,
   imports: [GenericFormComponent, ButtonModule],
   templateUrl: './task-form.component.html',
-  styleUrl: './task-form.component.css',
+  styleUrls: ['./task-form.component.css'],
 })
 export class TaskFormComponent implements OnInit {
   private readonly route = inject(ActivatedRoute);
@@ -27,7 +27,7 @@ export class TaskFormComponent implements OnInit {
   }
 
   private initializeForm(): void {
-    const projectIdParam = this.route.snapshot.paramMap.get('projectId');
+    const projectIdParam = this.route.snapshot.paramMap.get('id');
     this.projectId = projectIdParam ? Number(projectIdParam) : undefined;
 
     const taskIdParam = this.route.snapshot.paramMap.get('taskId');

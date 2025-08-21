@@ -8,7 +8,6 @@
 ::ng-deep .p-button {
   width: 200px;
   cursor: pointer;
-  background: #30809d;
   border-radius: 0.75rem;
   transition: background 0.3s ease;
 }

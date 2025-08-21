@@ -83,4 +83,8 @@ export class TaskListComponent implements OnInit {
       },
     });
   }
+
+  backToProjects(): void {
+    this.router.navigate(['/projects']);
+  }
 }

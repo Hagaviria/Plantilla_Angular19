@@ -23,7 +23,7 @@
 ::ng-deep .p-card {
   background-color: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(16px);
-  border-radius: 1.5rem;
+  border-radius: 0.75rem;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   width: 150%;
 }

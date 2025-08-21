@@ -1,9 +1,22 @@
-<h2>Lista de Proyectos</h2>
-<p-button label="Nuevo Proyecto" (click)="createNewProject()"></p-button>
-<div class="grid">
-  @for (project of projects(); track project.id) {
-  <div class="col-12 md:col-4">
-    <app-project-card [project]="project"></app-project-card>
+<div class="projects-header">
+  <h2 class="m-0">Lista de Proyectos</h2>
+  <div class="flex gap-2">
+    <p-button
+      label="Nuevo Proyecto"
+      (click)="createNewProject()"
+      (keydown.enter)="createNewProject()"
+    ></p-button>
+    <p-button
+      label="Logout"
+      severity="secondary"
+      (click)="logout()"
+      (keydown.enter)="logout()"
+      icon="pi pi-sign-out"
+    ></p-button>
   </div>
+</div>
+<div class="projects-grid">
+  @for (project of projects(); track project.id) {
+  <app-project-card [project]="project"></app-project-card>
   }
 </div>
