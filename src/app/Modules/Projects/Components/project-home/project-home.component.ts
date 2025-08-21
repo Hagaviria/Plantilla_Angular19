@@ -21,7 +21,9 @@ export class ProjectHomeComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit() {
-    this.projectsService.loadProjects();
+    if (this.projects().length === 0) {
+      this.projectsService.loadProjects();
+    }
   }
 
   createNewProject() {

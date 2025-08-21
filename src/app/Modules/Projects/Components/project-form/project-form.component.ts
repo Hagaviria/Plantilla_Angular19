@@ -46,12 +46,12 @@ export class ProjectFormComponent {
   onSubmit(formValues: any) {
     if (this.isEdit) {
       this.projectService
-        .updateProjects(this.projectId!, formValues)
+        .updateProject(this.projectId!, formValues)
         .subscribe(() => {
           this.router.navigate(['/projects']);
         });
     } else {
-      this.projectService.createProjects(formValues).subscribe(() => {
+      this.projectService.createProject(formValues).subscribe(() => {
         this.router.navigate(['/projects']);
       });
     }
