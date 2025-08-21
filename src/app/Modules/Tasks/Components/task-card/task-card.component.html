@@ -1,0 +1,22 @@
+<p-card>
+  <ng-template pTemplate="header">
+    <strong>ID: {{ task.id }}</strong>
+  </ng-template>
+
+  <p>{{ task.title }}</p>
+
+  <p-tag
+    [value]="task.completed ? 'Completada' : 'Pendiente'"
+    [severity]="task.completed ? 'success' : 'warning'"
+  >
+  </p-tag>
+
+  <ng-template pTemplate="footer">
+    <p-button label="Editar" (click)="edit.emit()"></p-button>
+    <p-button
+      label="Eliminar"
+      severity="danger"
+      (click)="delete.emit()"
+    ></p-button>
+  </ng-template>
+</p-card>

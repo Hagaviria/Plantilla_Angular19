@@ -23,6 +23,20 @@ export const routes: Routes = [
             './Modules/Projects/Components/project-form/project-form.component'
           ).then((m) => m.ProjectFormComponent),
       },
+      {
+        path: ':id/edit',
+        loadComponent: () =>
+          import(
+            './Modules/Projects/Components/project-form/project-form.component'
+          ).then((m) => m.ProjectFormComponent),
+      },
+      {
+        path: ':id/tasks',
+        loadComponent: () =>
+          import(
+            './Modules/Tasks/Components/task-list/task-list.component'
+          ).then((m) => m.TaskListComponent),
+      },
     ],
   },
   { path: '', redirectTo: '/login', pathMatch: 'full' },

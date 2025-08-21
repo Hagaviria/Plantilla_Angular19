@@ -1,0 +1,16 @@
+<h2>Tareas del Proyecto {{ projectId }}</h2>
+
+<p-button label="Nueva Tarea" (click)="addTask()"></p-button>
+
+<div class="grid">
+  @for (task of tasks$ | async; track task.id) {
+  <div class="col-12 md:col-4">
+    <app-task-card
+      [task]="task"
+      (edit)="editTask(task.id)"
+      (delete)="deleteTask(task.id)"
+    >
+    </app-task-card>
+  </div>
+  }
+</div>
