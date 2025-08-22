@@ -9,6 +9,11 @@ Aplicación web en Angular 19 que gestiona proyectos y tareas mediante component
 La aplicacion esta desplegada y disponible en el siguiente enlace
 https://starlit-treacle-9c3947.netlify.app/
 
+## Credenciales de Prueba
+
+- **Usuario:** admin
+- **Contraseña:** 12345
+  
 ## Requerimientos
 
 Antes de comenzar,asegúrate de tener instalados los siguientes programas:
@@ -18,10 +23,7 @@ npm(administrador de paquetes de Node.js)
 
 sigue los pasos a continuacion para configurar y ejecutar el proyecto.
 
-## Credenciales de Prueba
 
-- **Usuario:** admin
-- **Contraseña:** 12345
 
 ## Instrucciones
 
