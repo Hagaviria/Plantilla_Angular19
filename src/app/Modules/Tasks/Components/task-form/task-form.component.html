@@ -1,20 +1,16 @@
-<div>
-  <h2>{{ isEdit ? "Editar Tarea" : "Nueva Tarea" }}</h2>
-  <div>
-    <p-button
-      label="Volver"
-      (click)="onCancel()"
-      (keydown.enter)="onCancel()"
-      icon="pi pi-arrow-left"
-    ></p-button>
-  </div>
+<div class="form-container">
+  <p-card class="form-card">
+    <div>
+      <h2>{{ isEdit ? "Editar Tarea" : "Nueva Tarea" }}</h2>
+    </div>
+
+    <app-generic-form
+      [formFields]="formFields"
+      (formSubmit)="onSubmit($event)"
+      [showCancel]="true"
+      [labelSubmit]="isEdit ? 'Actualizar' : 'Crear'"
+      (cancel)="onCancel()"
+    >
+    </app-generic-form>
+  </p-card>
 </div>
-
-<app-generic-form [formFields]="formFields" (formSubmit)="onSubmit($event)">
-</app-generic-form>
-
-<p-button
-  label="Cancelar"
-  (click)="onCancel()"
-  (keydown.enter)="onCancel()"
-></p-button>

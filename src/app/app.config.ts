@@ -16,7 +16,16 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideAnimations(),
     providePrimeNG({
-      theme: { preset: Aura, options: { darkModeSelector: '.app-dark' } },
+      theme: {
+        preset: Aura,
+        options: {
+          darkModeSelector: false || 'none',
+          cssLayer: {
+            name: 'primeng',
+            order: 'app-styles, primeng',
+          },
+        },
+      },
     }),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),

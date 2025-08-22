@@ -4,11 +4,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectsService } from '../../Services/projects.service';
 import { GenericFormComponent } from '../../../../Shared/Components/generic-form/generic-form.component';
 import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
 
 @Component({
   selector: 'app-project-form',
   standalone: true,
-  imports: [GenericFormComponent, ButtonModule],
+  imports: [GenericFormComponent, ButtonModule, CardModule],
   templateUrl: './project-form.component.html',
   styleUrls: ['./project-form.component.css'],
 })
@@ -81,7 +82,7 @@ export class ProjectFormComponent implements OnInit {
     ];
   }
 
-  onCancel() {
+  goBack() {
     this.router.navigate(['/projects']);
   }
 

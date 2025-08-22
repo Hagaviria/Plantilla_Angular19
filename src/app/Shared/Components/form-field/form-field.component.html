@@ -26,7 +26,7 @@
       [formControlName]="field().key"
       [inputId]="field().key"
     ></p-checkbox>
-    <label [attr.for]="field().key" class="ml-2">{{ field().label }}</label>
+
     } } @if (control.invalid && (control.dirty || control.touched)) {
     <div class="required-label">{{ field().label }} es obligatorio</div>
     }

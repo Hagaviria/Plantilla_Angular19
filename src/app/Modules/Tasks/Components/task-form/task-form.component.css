@@ -1,12 +1,11 @@
-.form-wrapper {
-  max-width: 520px;
-  margin: 0 auto;
-  background: #ffffff;
-  padding: 1.5rem 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
 }
 
-h2 {
-  margin-top: 0;
+.form-card h2 {
+  text-align: center;
+  color: #30809d;
 }

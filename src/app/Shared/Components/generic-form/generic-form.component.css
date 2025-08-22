@@ -3,6 +3,7 @@
   justify-content: center;
   align-items: center;
   margin-top: 25px;
+  gap: 12px;
 }
 
 ::ng-deep .p-button {

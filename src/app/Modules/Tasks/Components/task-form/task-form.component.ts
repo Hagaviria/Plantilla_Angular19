@@ -4,11 +4,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TaskService } from '../../Services/task.service';
 import { GenericFormComponent } from '../../../../Shared/Components/generic-form/generic-form.component';
 import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
 
 @Component({
   selector: 'app-task-form',
   standalone: true,
-  imports: [GenericFormComponent, ButtonModule],
+  imports: [GenericFormComponent, ButtonModule, CardModule],
   templateUrl: './task-form.component.html',
   styleUrls: ['./task-form.component.css'],
 })

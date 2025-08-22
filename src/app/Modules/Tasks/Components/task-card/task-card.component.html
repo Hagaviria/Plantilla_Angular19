@@ -1,17 +1,15 @@
 <p-card>
-  <ng-template pTemplate="header">
-    <strong>ID: {{ task.id }}</strong>
-  </ng-template>
+  <strong>ID: {{ task.id }}</strong>
 
   <p>{{ task.title }}</p>
 
   <p-tag
     [value]="task.completed ? 'Completada' : 'Pendiente'"
-    [severity]="task.completed ? 'success' : 'warning'"
+    [severity]="task.completed ? 'success' : 'warn'"
   >
   </p-tag>
 
-  <ng-template pTemplate="footer">
+  <div class="actions">
     <p-button
       label="Editar"
       icon="pi pi-pencil"
@@ -23,5 +21,5 @@
       severity="danger"
       (click)="deleteTask()"
     ></p-button>
-  </ng-template>
+  </div>
 </p-card>

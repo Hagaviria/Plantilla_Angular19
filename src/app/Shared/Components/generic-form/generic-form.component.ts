@@ -24,8 +24,10 @@ export class GenericFormComponent<
 {
   @Input() formFields: FormFieldBase<string>[] = [];
   @Output() formSubmit = new EventEmitter<T>();
+  @Output() cancel = new EventEmitter<void>();
   @Input() labelSubmit: string = 'Guardar';
   @Input() styleClass: string = '';
+  @Input() showCancel = false;
 
   formGroup!: FormGroup;
 
@@ -39,5 +41,8 @@ export class GenericFormComponent<
     if (this.formGroup.valid) {
       this.formSubmit.emit(this.formGroup.value as T);
     }
+  }
+  onCancel() {
+    this.cancel.emit();
   }
 }
