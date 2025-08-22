@@ -10,7 +10,7 @@ const routes: Routes = [
   {
     path: ':id/tasks',
     loadChildren: () =>
-      import('../Tasks/tasks.module').then((m) => m.TasksModule), // Lazy load
+      import('../Tasks/tasks.module').then((m) => m.TasksModule),
   },
 ];
 
