@@ -1,3 +1,4 @@
+import { ValidatorFn } from '@angular/forms';
 export class FormFieldBase<T> {
   value?: T;
   key: string;
@@ -7,6 +8,7 @@ export class FormFieldBase<T> {
   controlType: string;
   type?: string;
   rows?: number;
+  validators?: ValidatorFn[];
   options?: { key: string; value: string }[];
 
   constructor(options: Partial<FormFieldBase<T>> = {}) {
@@ -19,5 +21,6 @@ export class FormFieldBase<T> {
     this.type = options.type;
     this.options = options.options ?? [];
     this.rows = options.rows ?? 3;
+    this.validators = options.validators ?? [];
   }
 }

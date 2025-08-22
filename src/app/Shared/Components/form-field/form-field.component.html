@@ -27,8 +27,17 @@
       [inputId]="field().key"
     ></p-checkbox>
 
-    } } @if (control.invalid && (control.dirty || control.touched)) {
-    <div class="required-label">{{ field().label }} es obligatorio</div>
+    } } @if (control.errors?.['required']) {
+    <div class="required-label">
+      El campo {{ field().label }} es obligatorio
+    </div>
+    } @if (control.errors?.['minLengthCustom']) {
+    <div class="required-label">
+      El título debe tener al menos
+      {{ control.errors?.['minLengthCustom']?.requiredLength }} caracteres
+    </div>
+    } @if (control.errors?.['uniqueProjectName']) {
+    <div class="required-label">Ya existe un proyecto con este nombre</div>
     }
   </div>
 </div>

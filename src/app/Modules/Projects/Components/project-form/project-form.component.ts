@@ -6,6 +6,11 @@ import { GenericFormComponent } from '../../../../Shared/Components/generic-form
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { MessageService } from 'primeng/api';
+import { Validators } from '@angular/forms';
+import {
+  minLengthCustom,
+  uniqueProjectNameValidator,
+} from '../../../../Shared/Validators/validators';
 
 @Component({
   selector: 'app-project-form',
@@ -73,6 +78,11 @@ export class ProjectFormComponent implements OnInit {
         label: 'Title',
         value: '',
         required: true,
+        validators: [
+          Validators.required,
+          minLengthCustom(3),
+          uniqueProjectNameValidator(this.projectsService),
+        ],
       }),
       new FormFieldBase({
         controlType: 'textarea',
