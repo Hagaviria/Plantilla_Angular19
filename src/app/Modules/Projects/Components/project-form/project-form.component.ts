@@ -5,6 +5,7 @@ import { ProjectsService } from '../../Services/projects.service';
 import { GenericFormComponent } from '../../../../Shared/Components/generic-form/generic-form.component';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-project-form',
@@ -17,6 +18,7 @@ export class ProjectFormComponent implements OnInit {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   private readonly projectsService = inject(ProjectsService);
+  private readonly messageService = inject(MessageService);
 
   isEdit = false;
   projectId?: number;
@@ -90,11 +92,23 @@ export class ProjectFormComponent implements OnInit {
     if (this.isEdit) {
       this.projectsService
         .updateProject(this.projectId!, formValues)
-        .subscribe(() => this.router.navigate(['/projects']));
+        .subscribe(() => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Proyecto actualizado',
+            detail: 'El proyecto se actualizó correctamente',
+          });
+          this.router.navigate(['/projects']);
+        });
     } else {
-      this.projectsService
-        .createProject(formValues)
-        .subscribe(() => this.router.navigate(['/projects']));
+      this.projectsService.createProject(formValues).subscribe(() => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Proyecto creado',
+          detail: 'El proyecto se creó correctamente',
+        });
+        this.router.navigate(['/projects']);
+      });
     }
   }
 }

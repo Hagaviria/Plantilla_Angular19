@@ -33,3 +33,15 @@
   transform: translateY(-3px);
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
 }
+.tasks-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 1rem;
+}
+.tasks-paginator {
+  margin-top: auto;
+  padding-top: 1rem;
+  display: flex;
+  justify-content: center;
+}

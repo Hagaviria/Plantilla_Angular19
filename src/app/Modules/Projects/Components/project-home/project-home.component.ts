@@ -5,18 +5,27 @@ import { ProjectCardComponent } from '../project-card/project-card.component';
 import { ButtonModule } from 'primeng/button';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../../Security/Services/auth.service';
+import { MessageService } from 'primeng/api';
 import { PaginatorModule } from 'primeng/paginator';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @Component({
   selector: 'app-project-home',
   standalone: true,
-  imports: [CommonModule, ProjectCardComponent, ButtonModule, PaginatorModule],
+  imports: [
+    CommonModule,
+    ProjectCardComponent,
+    ButtonModule,
+    PaginatorModule,
+    ConfirmDialogModule,
+  ],
   templateUrl: './project-home.component.html',
   styleUrls: ['./project-home.component.css'],
 })
 export class ProjectHomeComponent implements OnInit {
   private readonly projectsService = inject(ProjectsService);
   private readonly authService = inject(AuthService);
+  private readonly messageService = inject(MessageService);
 
   projects = this.projectsService.projects;
   loading = this.projectsService.loading;
@@ -56,6 +65,11 @@ export class ProjectHomeComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+    this.messageService.add({
+      severity: 'info',
+      summary: 'Sesión cerrada',
+      detail: 'Has salido de la aplicación',
+    });
     this.router.navigate(['/login']);
   }
 }

@@ -10,6 +10,7 @@
     label="Ver tareas"
     icon="pi pi-list"
     (click)="goToTasks(project.id)"
+    severity="info"
   ></p-button>
   <p-button
     label="Editar"
@@ -22,5 +23,6 @@
     class="ml-2"
     icon="pi pi-trash"
     (click)="deleteProject(project.id)"
+    severity="danger"
   ></p-button>
 </p-card>

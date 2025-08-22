@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardModule } from 'primeng/card';
 import { GenericFormComponent } from '../../../../Shared/Components/generic-form/generic-form.component';
@@ -8,6 +8,7 @@ import { ButtonModule } from 'primeng/button';
 import { LoginForm } from '../../Models/loginForm';
 import { AuthService } from '../../../../Security/Services/auth.service';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-login',
@@ -39,10 +40,9 @@ export class LoginComponent {
       type: 'password',
     }),
   ];
-  constructor(
-    private readonly authService: AuthService,
-    private readonly router: Router
-  ) {}
+  private readonly authService = inject(AuthService);
+  private readonly router = inject(Router);
+  private readonly messageService = inject(MessageService);
 
   onFormSubmit(formData: Record<string, any>) {
     const loginForm: LoginForm = {
@@ -50,17 +50,36 @@ export class LoginComponent {
       password: (formData['password'] ?? '') as string,
     };
     this.authService.login(loginForm.user, loginForm.password).subscribe({
-      next: (success) => {
-        console.log('Login successful:', success);
-        if (success) {
-          this.router.navigate(['/projects']);
-        } else {
-          console.warn('Credenciales inválidas');
-        }
-      },
-      error: (error) => {
-        console.error('Login failed:', error);
-      },
+      next: (success) =>
+        success
+          ? this.handleLoginSuccess(loginForm.user)
+          : this.handleLoginInvalid(),
+      error: () => this.handleLoginError(),
+    });
+  }
+
+  private handleLoginSuccess(user: string) {
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Sesión iniciada',
+      detail: `Bienvenido ${user}`,
+    });
+    this.router.navigate(['/projects']);
+  }
+
+  private handleLoginInvalid() {
+    this.messageService.add({
+      severity: 'warn',
+      summary: 'Credenciales inválidas',
+      detail: 'Usuario o contraseña incorrectos',
+    });
+  }
+
+  private handleLoginError() {
+    this.messageService.add({
+      severity: 'error',
+      summary: 'Error de inicio',
+      detail: 'No se pudo iniciar sesión',
     });
   }
 }

@@ -5,6 +5,7 @@ import { TaskService } from '../../Services/task.service';
 import { GenericFormComponent } from '../../../../Shared/Components/generic-form/generic-form.component';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-task-form',
@@ -17,6 +18,7 @@ export class TaskFormComponent implements OnInit {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   private readonly taskService = inject(TaskService);
+  private readonly messageService = inject(MessageService);
 
   isEdit = false;
   taskId?: number;
@@ -89,17 +91,25 @@ export class TaskFormComponent implements OnInit {
 
   onSubmit(formValues: any) {
     if (this.isEdit) {
-      this.taskService
-        .updateTask(this.taskId!, formValues)
-        .subscribe(() =>
-          this.router.navigate([`/projects/${this.projectId}/tasks`])
-        );
+      this.taskService.updateTask(this.taskId!, formValues).subscribe(() => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Tarea actualizada',
+          detail: 'La tarea se actualizó correctamente',
+        });
+        this.router.navigate([`/projects/${this.projectId}/tasks`]);
+      });
     } else {
       this.taskService
         .createTask({ ...formValues, projectId: this.projectId! })
-        .subscribe(() =>
-          this.router.navigate([`/projects/${this.projectId}/tasks`])
-        );
+        .subscribe(() => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Tarea creada',
+            detail: 'La tarea se creó correctamente',
+          });
+          this.router.navigate([`/projects/${this.projectId}/tasks`]);
+        });
     }
   }
 }

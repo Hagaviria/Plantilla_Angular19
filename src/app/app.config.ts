@@ -4,6 +4,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import Aura from '@primeng/themes/aura';
 import { providePrimeNG } from 'primeng/config';
 import { routes } from './app.routes';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import {
   provideClientHydration,
   withEventReplay,
@@ -27,6 +28,8 @@ export const appConfig: ApplicationConfig = {
         },
       },
     }),
+    MessageService,
+    ConfirmationService,
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
