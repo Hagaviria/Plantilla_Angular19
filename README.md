@@ -1,59 +1,51 @@
 # PruebaInnClod
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.15.
+## Descripción
 
-## Development server
+Aplicación web en Angular 19 que gestiona proyectos y tareas mediante componentes standalone, formularios dinámicos y PrimeNG para interfaz y notificaciones.
 
-To start a local development server, run:
+## Demo
+
+La aplicacion esta desplegada y disponible en el siguiente enlace
+https://starlit-treacle-9c3947.netlify.app/
+
+## Requerimientos
+
+Antes de comenzar,asegúrate de tener instalados los siguientes programas:
+
+Node.js(versión 18 o superior es recomendada)
+npm(administrador de paquetes de Node.js)
+
+sigue los pasos a continuacion para configurar y ejecutar el proyecto.
+
+## Credenciales de Prueba
+
+- **Usuario:** admin
+- **Contraseña:** 12345
+
+## Instrucciones
+
+1.Clonar el repositorio
+
+Primero,clona el respositorio en tu maquina local:
+
+```bash
+git clone https://github.com/Hagaviria/PruebaT_InnClod.git
+cd PruebaT_InnClod.git
+```
+
+2.Instalar dependencias
+
+```bash
+npm install
+```
+
+3.Iniciar la aplicacion
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Uso de la Aplicacion
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+La aplicación permite a un usuario autenticarse mediante un login simulado, listar proyectos obtenidos desde una API pública y visualizar sus tareas asociadas con Lazy Loading. Además, ofrece formularios reactivos para crear y editar proyectos o tareas con validaciones, modales de confirmación para eliminarlos, manejo centralizado de errores HTTP y protección de rutas mediante guards para garantizar que solo los usuarios autenticados accedan a la gestión de proyectos y tareas.
