@@ -1,7 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 import { Project } from '../Models/project';
-import { HttpClient } from '@angular/common/http';
-import { map, Observable, finalize, of } from 'rxjs';
+import { finalize, map, of } from 'rxjs';
+import { GenericApiService } from '../../../Shared/Services/generic-api/generic-api.service';
 
 @Injectable({
   providedIn: 'root',
@@ -11,11 +11,12 @@ export class ProjectsService {
   readonly projects = signal<Project[]>([]);
   readonly loading = signal<boolean>(false);
 
-  constructor(private http: HttpClient) {}
+  constructor(private api: GenericApiService) {}
 
   loadProjects(): void {
     this.loading.set(true);
-    this.http
+
+    this.api
       .get<any[]>(this.apiUrl)
       .pipe(
         map((users) =>
@@ -42,7 +43,6 @@ export class ProjectsService {
     const newProject = { ...project, id: maxId + 1 };
 
     this.projects.update((projects) => [...projects, newProject]);
-
     return of(newProject);
   }
 
@@ -51,11 +51,13 @@ export class ProjectsService {
     this.projects.update((projects) =>
       projects.map((p) => (p.id === id ? updatedProject : p))
     );
+
     return of(updatedProject);
   }
 
   deleteProject(id: number) {
     this.projects.update((projects) => projects.filter((p) => p.id !== id));
+
     return of(void 0);
   }
 }

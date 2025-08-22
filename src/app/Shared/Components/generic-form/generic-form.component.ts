@@ -58,9 +58,8 @@ export class GenericFormComponent<
       ? `Completa los campos: ${faltantes.join(', ')}`
       : 'Por favor completa los campos requeridos.';
 
-    this.messageService.clear('form');
+    this.messageService.clear();
     this.messageService.add({
-      key: 'form',
       severity: 'error',
       summary: 'Campos requeridos',
       detail,

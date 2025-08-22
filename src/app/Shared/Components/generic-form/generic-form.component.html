@@ -1,4 +1,3 @@
-<p-toast key="form" position="top-right"></p-toast>
 <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
   @for (field of formFields; track field.key) {
   <app-form-field [field]="field" [form]="formGroup"></app-form-field>
