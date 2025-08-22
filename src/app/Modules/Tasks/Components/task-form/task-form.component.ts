@@ -52,14 +52,14 @@ export class TaskFormComponent implements OnInit {
           new FormFieldBase({
             controlType: 'textbox',
             key: 'title',
-            label: 'Title',
+            label: 'Titulo',
             value: task.title,
             required: true,
           }),
           new FormFieldBase({
             controlType: 'checkbox',
             key: 'completed',
-            label: 'Completed',
+            label: 'Completado',
             value: task.completed,
           }),
         ];
@@ -72,14 +72,14 @@ export class TaskFormComponent implements OnInit {
       new FormFieldBase({
         controlType: 'textbox',
         key: 'title',
-        label: 'Title',
+        label: 'Titulo',
         value: '',
         required: true,
       }),
       new FormFieldBase({
         controlType: 'checkbox',
         key: 'completed',
-        label: 'Completed',
+        label: 'Completado',
         value: false,
       }),
     ];

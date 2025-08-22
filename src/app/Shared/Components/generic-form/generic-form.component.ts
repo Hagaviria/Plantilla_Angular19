@@ -5,6 +5,8 @@ import { FormControlService } from '../../Services/form-control/form-control.ser
 import { CommonModule } from '@angular/common';
 import { FormFieldComponent } from '../form-field/form-field.component';
 import { ButtonModule } from 'primeng/button';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-generic-form',
@@ -14,6 +16,7 @@ import { ButtonModule } from 'primeng/button';
     CommonModule,
     FormFieldComponent,
     ButtonModule,
+    ToastModule,
   ],
   templateUrl: './generic-form.component.html',
   styleUrls: ['./generic-form.component.css'],
@@ -31,7 +34,10 @@ export class GenericFormComponent<
 
   formGroup!: FormGroup;
 
-  constructor(private readonly formControlService: FormControlService) {}
+  constructor(
+    private readonly formControlService: FormControlService,
+    private readonly messageService: MessageService
+  ) {}
 
   ngOnInit() {
     this.formGroup = this.formControlService.toFormGroup(this.formFields);
@@ -40,7 +46,32 @@ export class GenericFormComponent<
   onSubmit() {
     if (this.formGroup.valid) {
       this.formSubmit.emit(this.formGroup.value as T);
+      return;
     }
+
+    Object.values(this.formGroup.controls).forEach((ctrl) =>
+      ctrl.markAsTouched()
+    );
+
+    const faltantes = this.getMissingRequiredFields();
+    const detail = faltantes.length
+      ? `Completa los campos: ${faltantes.join(', ')}`
+      : 'Por favor completa los campos requeridos.';
+
+    this.messageService.clear('form');
+    this.messageService.add({
+      key: 'form',
+      severity: 'error',
+      summary: 'Campos requeridos',
+      detail,
+      life: 5000,
+    });
+  }
+
+  private getMissingRequiredFields(): string[] {
+    return this.formFields
+      .filter((f) => f.required && this.formGroup.get(f.key)?.invalid)
+      .map((f) => f.label || f.key);
   }
   onCancel() {
     this.cancel.emit();

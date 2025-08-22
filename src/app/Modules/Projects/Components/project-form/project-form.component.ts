@@ -75,7 +75,7 @@ export class ProjectFormComponent implements OnInit {
       new FormFieldBase({
         controlType: 'textbox',
         key: 'title',
-        label: 'Title',
+        label: 'Titulo',
         value: '',
         required: true,
         validators: [
@@ -87,7 +87,7 @@ export class ProjectFormComponent implements OnInit {
       new FormFieldBase({
         controlType: 'textarea',
         key: 'description',
-        label: 'Description',
+        label: 'Descripción',
         value: '',
         required: true,
       }),
