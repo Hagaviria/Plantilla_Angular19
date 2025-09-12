@@ -144,13 +144,11 @@ describe('GenericFormComponent', () => {
   describe('Form Submission', () => {
     it('should emit formSubmit when form is valid', () => {
       jest.spyOn(component.formSubmit, 'emit');
-      const fields = [createTestField({ required: false })]; // Use non-required field
+      const fields = [createTestField({ required: false, value: 'valid value' })]; // Set initial value
       component.formFields = fields;
       component.ngOnInit();
       
-      // Set valid value
-      const control = component.formGroup.get('testField')!;
-      control.setValue('valid value');
+      // The form should be valid with the initial value
       fixture.detectChanges();
 
       // Call onSubmit directly
@@ -173,20 +171,20 @@ describe('GenericFormComponent', () => {
     });
 
     it('should mark all controls as touched when form is invalid', () => {
-      const fields = [createTestField({ required: true })];
+      const fields = [createTestField({ required: true, value: '' })]; // Start with empty value
       component.formFields = fields;
       component.ngOnInit();
       const control = component.formGroup.get('testField')!;
       
-      // Ensure the form is invalid (empty value)
+      // Ensure the form is invalid
       control.setValue('');
-      jest.spyOn(control, 'markAsTouched');
+      const markAsTouchedSpy = jest.spyOn(control, 'markAsTouched');
       fixture.detectChanges();
 
       // Call onSubmit directly
       component.onSubmit();
 
-      expect(control.markAsTouched).toHaveBeenCalled();
+      expect(markAsTouchedSpy).toHaveBeenCalled();
     });
 
     it('should show error message when form is invalid', () => {
@@ -208,13 +206,39 @@ describe('GenericFormComponent', () => {
     });
 
     it('should show generic error message when no specific fields are missing', () => {
-      const fields = [createTestField({ required: false })];
+      const fields = [createTestField({ required: false, value: '' })];
       component.formFields = fields;
       component.ngOnInit();
       
       // Make the form invalid by adding a custom validator
       const control = component.formGroup.get('testField')!;
       control.setErrors({ customError: true });
+      control.markAsTouched();
+      fixture.detectChanges();
+
+      // Call onSubmit directly
+      component.onSubmit();
+
+      expect(mockMessageService.add).toHaveBeenCalledWith({
+        severity: 'error',
+        summary: 'Campos requeridos',
+        detail: 'Por favor completa los campos requeridos.',
+        life: 5000,
+      });
+    });
+
+    it('should show generic error message when form is invalid but no required fields are missing', () => {
+      const fields = [
+        createTestField({ key: 'field1', label: 'Field 1', required: true, value: 'valid value' }),
+        createTestField({ key: 'field2', label: 'Field 2', required: false, value: '' })
+      ];
+      component.formFields = fields;
+      component.ngOnInit();
+      
+      // Make field2 invalid with custom validator (not required field)
+      const control = component.formGroup.get('field2')!;
+      control.setErrors({ customError: true });
+      control.markAsTouched();
       fixture.detectChanges();
 
       // Call onSubmit directly
