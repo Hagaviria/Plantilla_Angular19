@@ -12,7 +12,9 @@ label {
   margin-bottom: 1rem;
 }
 .required-label {
-  color: #f44336;
+  color: #f62525;
+  font-size: 0.775rem;
+  margin-top: 0.25rem;
 }
 
 .form-label {
