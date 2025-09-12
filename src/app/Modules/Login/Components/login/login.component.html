@@ -1,13 +1,22 @@
 <div class="login-container">
-  <p-card class="login-card">
-    <div class="logo">
-      <img src="assets/images/logo/acceso.png" alt="Login" />
-    </div>
 
+  <!-- User Icon -->
+  <div class="user-icon">
+    <div class="user-silhouette">
+      <div class="user-head"></div>
+      <div class="user-body"></div>
+    </div>
+  </div>
+  
+  <!-- Main Login Card -->
+  <p-card class="login-card">
     <app-generic-form
-      [formFields]="formFields"
-      labelSubmit="Iniciar sesión"
-      (formSubmit)="onFormSubmit($event)"
-    ></app-generic-form>
+    [formFields]="formFields"
+    labelSubmit="Iniciar sesión"
+    (formSubmit)="onFormSubmit($event)"
+  ></app-generic-form>
   </p-card>
+
+  <!-- Madeby Footer -->
+  <app-madeby-footer></app-madeby-footer>
 </div>

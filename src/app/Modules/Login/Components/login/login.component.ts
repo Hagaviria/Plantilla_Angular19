@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, inject } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardModule } from 'primeng/card';
@@ -9,16 +9,17 @@ import { LoginForm } from '../../Models/loginForm';
 import { AuthService } from '../../../../Security/Services/auth.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { MadebyFooterComponent } from '../../../../Shared/Components/madeby-footer/madeby-footer.component';
 
 @Component({
   selector: 'app-login',
   imports: [
-    CommonModule,
     FormsModule,
     ReactiveFormsModule,
     CardModule,
     GenericFormComponent,
     ButtonModule,
+    MadebyFooterComponent,
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],

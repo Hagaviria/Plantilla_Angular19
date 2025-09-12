@@ -2,7 +2,6 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { FormFieldBase } from '../../Models/forms/form-field-base';
 import { FormControlService } from '../../Services/form-control/form-control.service';
-import { CommonModule } from '@angular/common';
 import { FormFieldComponent } from '../form-field/form-field.component';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
@@ -13,7 +12,6 @@ import { MessageService } from 'primeng/api';
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    CommonModule,
     FormFieldComponent,
     ButtonModule,
     ToastModule,
