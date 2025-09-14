@@ -4,15 +4,6 @@
 
 Aplicación web en Angular 19 que gestiona proyectos y tareas mediante componentes standalone, formularios dinámicos y PrimeNG para interfaz y notificaciones.
 
-## Demo
-
-La aplicacion esta desplegada y disponible en el siguiente enlace
-https://starlit-treacle-9c3947.netlify.app/
-
-## Credenciales de Prueba
-
-- **Usuario:** admin
-- **Contraseña:** 12345
   
 ## Requerimientos
 
